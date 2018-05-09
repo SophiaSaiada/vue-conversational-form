@@ -21,8 +21,8 @@ npm i --save vue-conversational-form
       </fieldset>
     </ConversationalForm>
 </template>
-
-import ConversationalForm from './components/ConversationalForm'
+<script>
+import ConversationalForm from 'vue-conversational-form'
 
 export default {
   name: 'App',
@@ -36,4 +36,5 @@ export default {
     }
   }
 }
+</script>
 ```
