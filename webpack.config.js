@@ -1,59 +1,61 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const path = require('path');
+var path = require('path')
+var webpack = require('webpack')
 
-var config = {
-    output: {
-        path: path.resolve(__dirname + '/dist/'),
-    },
-    externals: {
-        VueScrollTo: 'vue-scrollto'
-    },
-    module: {
-    loaders: [{
+module.exports = {
+  entry: './src/module.js',
+
+  module: {
+    rules: [
+      // use babel-loader for js files
+      {
         test: /\.js$/,
-        loader: 'babel',
-        include: __dirname,
-        exclude: /node_modules/
-    },
-    {
+        use: 'babel-loader'
+      },
+      // use vue-loader for .vue files
+      {
         test: /\.vue$/,
-        loader: 'vue'
-    },
-    {
-        test: /\.css$/,
-        loader: 'style!scss!css'
-    }
+        use: 'vue-loader'
+      },
+      {
+        test: /\.svg/,
+        use: {
+          loader: 'url-loader',
+          loader: 'svg-url-loader',
+          loader: 'file-loader',
+          options: {},
+        },
+      }
     ]
-    },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            minimize: true,
-            sourceMap: false,
-            mangle: true,
-            compress: {
-            warnings: false
-            }
-        })
-    ]
-};
+  },
+  // default for pretty much every project
+  context: __dirname,
+  // specify your entry/main file
+  output: {
+    // specify your output directory...
+    path: path.resolve(__dirname, './dist'),
+    // and filename
+    filename: 'vue-conversational-form.js'
+  }
+}
 
-module.exports = [
-    merge(config, {
-        entry: path.resolve(__dirname + '/src/plugin.js'),
-        output: {
-          filename: 'vue-conversational-form.min.js',
-          libraryTarget: 'window',
-          library: 'ConversationalForm',    
-        }
+
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
     }),
-    merge(commonConfig, {
-        entry: path.resolve(__dirname + '/src/components/ConversationalForm.vue'),
-        output: {
-          filename: 'vue-conversational-form.js',
-          libraryTarget: 'umd',
-          library: 'ConversationalForm',
-          umdNamedDefine: true
-        }
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
     })
-];
+  ])
+}

@@ -2,14 +2,17 @@
   "name": "vue-conversational-form",
   "version": "1.0.0",
   "description": "Turning web forms into conversations using Vue.js",
+  "main": "src/module.js",
   "author": "Yossi <yossi787 at gmail dot com>",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "buildDocs": "node build/build.js",
+    "build": "webpack -p"
   },
   "dependencies": {
+    "hoek": "^5.0.3",
     "vue": "^2.5.2",
     "vue-scrollto": "^2.11.0"
   },
