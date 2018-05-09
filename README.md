@@ -1,21 +1,39 @@
 # vue-conversational-form
+Turning web forms into conversations using Vue.js
+[Demo](https://yossi787.github.io/vue-conversational-form/)
 
-> Turning web forms into conversations using Vue.js
-
-## Build Setup
-
+## Install
 ``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+npm i --save vue-conversational-form
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Usage
+``` bash
+<template>
+    <ConversationalForm @submit="submit">
+      <fieldset>
+        <label for="name">What's your name?</label>
+        <input required data-question="Hi there! What's your name? " type="text" name="name" id="name">
+      </fieldset>
+      <fieldset>
+        <label for="thats-all">Are you ready to submit the form?</label>
+        <button data-question="Are you ready to submit the form?" data-success="Submited! Yay! 😄" name="submit" type="submit" data-cancel="Nope">Yup</button>
+      </fieldset>
+    </ConversationalForm>
+</template>
+
+import ConversationalForm from './components/ConversationalForm'
+
+export default {
+  name: 'App',
+  components: {
+    ConversationalForm
+  },
+  methods: {
+    submit (o) {
+      console.log('Submit:')
+      console.log(o) // get form data
+    }
+  }
+}
+```
