@@ -40,11 +40,11 @@ export default {
 ```
 
 ## Documentation
-For every input typw, the question will be defined in the `data-question` attribute.  
-Multple questions options will be seperated by `|`. Use inserted values using `{value-name}`.  
-For submit buttons. use `data-success` for defining success message.  
-For submit/reset buttons, use `data-cancel` for defining the cancel button's text.  
-Listen in the parent to `submit` event in order to get the submitted data (as an object)  
+The content of the question should be defined in the `data-question` attribute.  
+Multple question options will be seperated by `|`. Use inserted values using `{value-name}`.  
+In submit buttons, use `data-success` for defining success message.  
+In submit/reset buttons, use `data-cancel` for defining the cancel button's text.  
+Listen in the parent to `submit` event in order to get the submitted data (as an object).  
   
 Define a text/email/password input:
 ``` html
