@@ -1,6 +1,6 @@
 # Vue.js Conversational Form
 Turning web forms into conversations using Vue.js.  
-[Demo](https://yossisaiada.github.io/vue-conversational-form/)
+[Demo](https://sophiasaiada.github.io/vue-conversational-form/)
 
 ## Install
 ``` bash
